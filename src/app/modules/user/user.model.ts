@@ -20,6 +20,7 @@ const userSchema = new Schema<TUser>(
     passwordChangedAt: { type: Date, default: Date.now },
     resetOTP: { type: String },
     resetOTPExpire: { type: Date },
+    isResetOTPVerified:{type:Boolean,default:false}
   },
   {
     timestamps: true,

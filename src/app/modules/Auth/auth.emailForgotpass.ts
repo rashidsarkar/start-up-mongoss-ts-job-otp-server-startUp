@@ -59,3 +59,33 @@
 //     );
 //     return 'Password reset successfully';
 //   };
+///-------------------->controller
+/*
+const forgotPassword = catchAsync(async (req, res) => {
+  const { email } = req.body;
+  // eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
+  const result = await AuthServices.forgotPassword(email);
+  sendResponse(res, {
+    statusCode: StatusCodes.OK,
+    success: true,
+    message: 'Password reset URL sent to email successfully',
+    data: 'check your email inbox',
+  });
+});
+const resetPassword = catchAsync(async (req, res) => {
+  const { email, newPassword } = req.body;
+  const token = req.headers.authorization;
+
+  const result = await AuthServices.resetPassword(
+    email,
+    newPassword,
+    token as string,
+  );
+  sendResponse(res, {
+    statusCode: StatusCodes.OK,
+    success: true,
+    message: 'Password reset successfully',
+    data: result,
+  });
+});
+*/

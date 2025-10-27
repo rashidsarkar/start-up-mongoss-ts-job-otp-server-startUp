@@ -67,20 +67,36 @@ const forgotPassword = catchAsync(async (req, res) => {
     data: 'check your email inbox',
   });
 });
+
+
+const verifyOTP= catchAsync(async(req,res)=>{
+  const {email,otp}=req.body;
+  const result = await AuthServices.verifyOTP(email,otp);
+  sendResponse(res,{
+    statusCode:StatusCodes.OK,
+    success:true,
+    message:"OTP verification Successfull",
+    data:result
+  })
+})
+
+
 const resetPassword = catchAsync(async (req, res) => {
   const { email, newPassword } = req.body;
-  const token = req.headers.authorization;
-
   const result = await AuthServices.resetPassword(
     email,
-    newPassword,
-    token as string,
+    newPassword, 
   );
+    const { refreshToken, accessToken } = result;
+  res.cookie('refreshToken', refreshToken, {
+    secure: true,
+    httpOnly: true,
+  });
   sendResponse(res, {
     statusCode: StatusCodes.OK,
     success: true,
     message: 'Password reset successfully',
-    data: result,
+    data: accessToken,
   });
 });
 
@@ -91,4 +107,5 @@ export const AuthControllers = {
   changePassword,
   forgotPassword,
   resetPassword,
+  verifyOTP
 };

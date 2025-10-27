@@ -11,6 +11,7 @@ export type TUser = {
   passwordChangedAt?: Date;
   resetOTP?: string;
   resetOTPExpire?: Date;
+  isResetOTPVerified?:boolean;
 };
 export type TLoginUser = {
   email: string;
